@@ -2,9 +2,11 @@
 CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost';
 CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost';
 
--- Grant all privileges to user_0d_1 and user_0d_2
+-- Grant all privileges to user_0d_1 if user exists
 GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
-GRANT ALL PRIVILEGES ON *.* TO 'user_0d_2'@'localhost';
+
+-- Grant SELECT and INSERT privileges to user_0d_2 if user exists
+GRANT SELECT, INSERT ON *.* TO 'user_0d_2'@'localhost';
 
 -- Flush privileges to ensure that all changes take effect
 FLUSH PRIVILEGES;
