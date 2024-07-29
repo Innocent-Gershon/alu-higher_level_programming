@@ -1,6 +1,11 @@
 #!/usr/bin/python3
-"""  fetches https://alu-intranet.hbtn.io/status  """
 import urllib.request
+
+url = 'https://alu-intranet.hbtn.io/status'
+req = urllib.request.Request(
+    url, 
+    headers={'User-Agent': 'Mozilla/5.0'}
+)
 
 
 if __name__ == "__main__":
