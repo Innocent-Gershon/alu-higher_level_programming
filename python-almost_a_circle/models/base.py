@@ -95,7 +95,8 @@ class Base:
             list_objs (list): A list of inherited Base instances.
         """
         fn = cls.__name__ + ".csv"
-        fields = ["id", "width", "height", "x", "y"] if fn == "Rectangle.csv" else ["id", "size", "x", "y"]
+        fields = ["id", "width", "height", "x", "y"] if fn == "Rectangle.csv" \
+            else ["id", "size", "x", "y"]
         with open(fn, mode="w", newline="") as myFile:
             writer = csv.DictWriter(myFile, fieldnames=fields)
             if list_objs is None:
@@ -149,4 +150,3 @@ class Base:
             pen.right(90)
             pen.forward(shape.height)
             pen.right(90)
-
