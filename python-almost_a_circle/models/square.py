@@ -1,59 +1,53 @@
 #!/usr/bin/python3
-""" just another module"""
+"""A rectangle module"""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """just a module"""
+    """ A Square class """
     def __init__(self, size, x=0, y=0, id=None):
-        """just using the super class"""
+        """Initialize a square instance"""
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
-        """ just string form """
-        d = self.id
-        b = self.height
-        c = self.x
-        e = self.y
-        return ("[Square] ({}) {}/{} - {}".format(d, c, e, b))
+        """Returns the string representation of a square"""
+        return "[Square] ({}) {}/{} - {}".format(
+            self.id, self.x, self.y, self.width)
 
     @property
     def size(self):
-        """just size function"""
+        """Getter for size"""
         return self.width
 
     @size.setter
-    def size(self, value):
-        """setter for size"""
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.width = value
-        self.height = value
+    def size(self, size):
+        """Setter for size"""
+        self.width = size
+        self.height = size
 
-        # Methods
     def update(self, *args, **kwargs):
-        """Updates the Square attributes
-        """
-        dct = {}
+        """Updates the attributes of a square"""
         if args is not None and len(args) > 0:
-            keys = ['id', 'size', 'x', 'y']
-            for i in range(len(args) if len(args) <= 4 else 4):
-                dct[keys[i]] = args[i]
+            for i, arg in enumerate(args):
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.size = arg
+                elif i == 2:
+                    self.x = arg
+                elif i == 3:
+                    self.y = arg
         else:
-            dct = kwargs
-
-        if len(dct) > 0:
-            for key, value in dct.items():
-                if key == 'id' and value is None:
-                    self.__init__(self.size, self.x, self.y)
-                else:
-                    setattr(self, key, value)
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "size":
+                    self.size = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
 
     def to_dictionary(self):
-        """
-        just square dictionary
-        represeentation
-        """
-        return {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
+        """Returns the dictionary representation of a square"""
+        return {"id": self.id, "size": self.size, "x": self.x, "y": self.y}
