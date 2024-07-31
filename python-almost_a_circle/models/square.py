@@ -1,59 +1,88 @@
 #!/usr/bin/python3
-""" just another module"""
+"""Create a Square class for the work"""
+
+
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """just a module"""
+    """Create a Square class for the work"""
     def __init__(self, size, x=0, y=0, id=None):
-        """just using the super class"""
-        super().__init__(size, size, x, y, id)
+        """
+        Create a Square class for the work
 
-    def __str__(self):
-        """ just string form """
-        d = self.id
-        b = self.height
-        c = self.x
-        e = self.y
-        return ("[Square] ({}) {}/{} - {}".format(d, c, e, b))
+        :param size: The size of the square
+        :param x: The x coordinate of the square
+        :param y: The y coordinate of the square
+        :param id: The id of the square
+        """
+        super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """just size function"""
+        """
+        Return the size of the square
+
+        :return: The size of the square
+        """
         return self.width
 
     @size.setter
     def size(self, value):
-        """setter for size"""
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
+        """
+        Set the size of the square
+
+        :param value: The size of the square
+        """
         self.width = value
         self.height = value
 
-        # Methods
-    def update(self, *args, **kwargs):
-        """Updates the Square attributes
+    def __str__(self):
         """
-        dct = {}
-        if args is not None and len(args) > 0:
-            keys = ['id', 'size', 'x', 'y']
-            for i in range(len(args) if len(args) <= 4 else 4):
-                dct[keys[i]] = args[i]
-        else:
-            dct = kwargs
+        Return the string representation of the square
 
-        if len(dct) > 0:
-            for key, value in dct.items():
-                if key == 'id' and value is None:
-                    self.__init__(self.size, self.x, self.y)
-                else:
-                    setattr(self, key, value)
+        :return: The string representation of the square
+        """
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
+
+    def update(self, *args, **kwargs):
+        """
+        Update the square
+
+        :return: The updated square
+        """
+        if len(args) != 0:
+            try:
+                self.id = args[0]
+                self.size = args[1]
+                self.x = args[2]
+                self.y = args[3]
+            except IndexError:
+                pass
+
+        elif len(kwargs) != 0:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            else:
+                self.id
+
+            if "size" in kwargs:
+                self.size = kwargs["size"]
+            else:
+                self.size
+
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            else:
+                self.x
+
+            if "y" in kwargs:
+                self.y = kwargs["y"]
 
     def to_dictionary(self):
         """
-        just square dictionary
-        represeentation
+        Return a dictionary representation of the square
+
+        :return: The dictionary representation of the square
         """
         return {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
