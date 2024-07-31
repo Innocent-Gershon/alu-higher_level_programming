@@ -86,3 +86,4 @@ class Square(Rectangle):
         :return: The dictionary representation of the square
         """
         return {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
+
